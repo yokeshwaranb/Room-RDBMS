@@ -1,4 +1,4 @@
-package com.training.roomrdbms;
+package com.training.roomrdbms.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
