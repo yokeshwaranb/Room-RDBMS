@@ -8,6 +8,7 @@ import androidx.room.Transaction;
 
 import com.training.roomrdbms.entities.Director;
 import com.training.roomrdbms.entities.School;
+import com.training.roomrdbms.entities.Student;
 import com.training.roomrdbms.entities.relations.SchoolAndDirector;
 import com.training.roomrdbms.entities.relations.SchoolWithStudents;
 import com.training.roomrdbms.entities.relations.StudentWithSubjects;
@@ -28,4 +29,10 @@ interface SchoolDao {
     @Query("SELECT * FROM school WHERE schoolName = :schoolName")
     List<SchoolAndDirector> getSchoolAndDirectorWithSchoolName(String schoolName);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertDirector(Student student);
+
+    @Transaction
+    @Query("SELECT * FROM school WHERE schoolName = :schoolName")
+    List<SchoolWithStudents> getSchoolWithStudents(String schoolName);
 }
